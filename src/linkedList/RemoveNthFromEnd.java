@@ -27,6 +27,7 @@ public class RemoveNthFromEnd {
   }
 
   public ListNode removeNthFromEnd2(ListNode head,int n){
+    if(head==null || n==0) return null;
     ListNode pre=new ListNode(0);
     pre.next=head;
     ListNode fast=pre;
