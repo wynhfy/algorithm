@@ -26,10 +26,27 @@ public class InsertSort {
     }
   }
 
+  public void insertionSort(int[] nums){
+    if(nums.length<=1) return;
+    for(int i=1;i<nums.length;i++){
+      int temp=nums[i];
+      int j=i-1;
+      while(j>=0){
+        if(nums[j]>temp){
+          nums[j+1]=nums[j];
+          j--;
+        }else{
+          break;
+        }
+      }
+      nums[j+1]=temp;
+    }
+  }
+
 
   public static void main(String[] args) {
     int[] nums={9,8,7,6,5,4,3,2,1,0};
-    new InsertSort().sort(nums);
+    new InsertSort().insertionSort(nums);
     for(Integer i:nums){
       System.out.print(i);
     }
