@@ -78,6 +78,37 @@ public class BST<Key extends Comparable<Key>,Value> {
         return max(x.right);
     }
 
+    //删除最小值
+    public void deleteMin(){
+        root=deleteMin(root);
+    }
+    private Node deleteMin(Node x){
+        if(x.left==null) return x.right;
+        x.left=deleteMin(x.left);
+        x.N=size(x.left)+size(x.right)+1;
+        return x;
+    }
+
+    //删除结点
+    public void delete(Key key){
+        root=delete(root,key);
+    }
+    private Node delete(Node x,Key key){
+        if(x==null) return null;
+        int cmp=key.compareTo(x.key);
+        if(cmp<0) x.left=delete(x.left,key);
+        else if(cmp>0) x.right=delete(x.right,key);
+        else{  //找到要删除的结点了
+            if(x.right==null) return x.left;
+            if(x.left==null) return x.right;
+            Node t=x; //保留要删除的结点
+            x=min(t.right); //x是要删除结点的右子树的最小结点
+            x.right=deleteMin(t.right); //删除右子树中的最小结点，同时将x的右子树指向它
+            x.left=t.left; //x的左子树指向被删除结点的左结点
+        }
+        x.N=size(x.left)+size(x.right)+1;
+        return x;
+    }
 
 
     //查找排名为k的键，即树中正好有k个小于它的键
