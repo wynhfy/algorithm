@@ -1,8 +1,6 @@
 package window;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * 剑指 Offer 59 - I. 滑动窗口的最大值
