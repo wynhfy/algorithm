@@ -43,10 +43,21 @@ public class InsertSort {
     }
   }
 
+  public void insertSort(int[] nums){
+      for(int i=1;i<nums.length;i++){
+        int t=nums[i];
+        int j=i;
+        for(j=i;j>0 && nums[j-1]>t ; j--){
+           nums[j]=nums[j-1];
+        }
+        nums[j]=t;
+      }
+  }
+
 
   public static void main(String[] args) {
     int[] nums={9,8,7,6,5,4,3,2,1,0};
-    new InsertSort().insertionSort(nums);
+    new InsertSort().insertSort(nums);
     for(Integer i:nums){
       System.out.print(i);
     }
