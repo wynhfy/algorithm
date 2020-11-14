@@ -19,38 +19,38 @@ public class QuickSort {
     quickSort(array,left,index-1);
     quickSort(array,index+1,right);
   }
-
-  /**
-   * 划分数组
-   * @param array
-   * @param left 数组的左边界
-   * @param right 数组的右边界
-   * @return
-   */
-  public int partition(int[] array,int left,int right){
-    int pivot=array[right];  //选取最后一个数作为基准数
-    int leftIndex=left;      //用来从左遍历的下标
-    int rightIndex=right-1;  //用来从右遍历的下标
-    while(true){
-      while(leftIndex<right && array[leftIndex]<pivot) leftIndex++; //从左开始遍历，找到比基准数大的数字
-      while(rightIndex>=left && array[rightIndex]>pivot) rightIndex--; //从右开始遍历，找到比基准数小的数字
-      if(leftIndex>rightIndex) break;
-      swap(array,leftIndex,rightIndex);
-    }
-    swap(array,leftIndex,right); //swap pivot to the right position 将基准数放到正确的位置
-    return leftIndex;
-  }
-
-
-  /**
-   * 交换
-   */
-  public void swap(int[] array,int leftIndex,int rightIndex){
-    int temp=array[leftIndex];
-    array[leftIndex]=array[rightIndex];
-    array[rightIndex]=temp;
-  }
-
+//
+//  /**
+//   * 划分数组
+//   * @param array
+//   * @param left 数组的左边界
+//   * @param right 数组的右边界
+//   * @return
+//   */
+//  public int partition(int[] array,int left,int right){
+//    int pivot=array[right];  //选取最后一个数作为基准数
+//    int leftIndex=left;      //用来从左遍历的下标
+//    int rightIndex=right-1;  //用来从右遍历的下标
+//    while(true){
+//      while(leftIndex<right && array[leftIndex]<pivot) leftIndex++; //从左开始遍历，找到比基准数大的数字
+//      while(rightIndex>=left && array[rightIndex]>pivot) rightIndex--; //从右开始遍历，找到比基准数小的数字
+//      if(leftIndex>rightIndex) break;
+//      swap(array,leftIndex,rightIndex);
+//    }
+//    swap(array,leftIndex,right); //swap pivot to the right position 将基准数放到正确的位置
+//    return leftIndex;
+//  }
+//
+//
+//  /**
+//   * 交换
+//   */
+//  public void swap(int[] array,int leftIndex,int rightIndex){
+//    int temp=array[leftIndex];
+//    array[leftIndex]=array[rightIndex];
+//    array[rightIndex]=temp;
+//  }
+//
   public static void main(String[] args) {
 //    int[] nums={9,8,7,6,5,4,3,2,1,0};
     int[] nums={3,0,4,1,2,5,9,8,7,6};
@@ -59,5 +59,55 @@ public class QuickSort {
       System.out.print(i);
     }
   }
+
+  /**
+   * 双边循环法
+   * @param array
+   * @param leftIndex
+   * @param rightIndex
+   * @return
+   */
+//  private int partition(int[] array, int leftIndex, int rightIndex) {
+//      int pivot=array[leftIndex];
+//      int left=leftIndex;
+//      int right=rightIndex;
+//      while(left!=right){
+//         while(right>left && array[right]>pivot) right--;
+//         while(right>left && array[left]<=pivot) left++;
+//         if(left<right){
+//           int temp=array[left];
+//           array[left]=array[right];
+//           array[right]=temp;
+//         }
+//      }
+//      array[leftIndex]=array[left];
+//      array[left]=pivot;
+//      return left;
+//  }
+
+
+  /**
+   * 单边循环法
+   * @param array
+   * @param leftIndex
+   * @param rightIndex
+   * @return
+   */
+  private int partition(int[] array, int leftIndex, int rightIndex) {
+    int pivot=array[leftIndex];
+    int mark=leftIndex;
+    for(int i=leftIndex+1;i<=rightIndex;i++){
+      if(array[i]<pivot){
+        mark++;
+        int temp=array[mark];
+        array[mark]=array[i];
+        array[i]=temp;
+      }
+    }
+    array[leftIndex]=array[mark];
+    array[mark]=pivot;
+    return mark;
+  }
+
 
 }

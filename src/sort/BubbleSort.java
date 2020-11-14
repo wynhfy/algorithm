@@ -22,6 +22,27 @@ public class BubbleSort {
     }
   }
 
+  /**
+   * 冒泡排序的最优方案
+   * @param nums
+   */
+  public void sortion(int[] nums){
+    int sortedBorder=nums.length-1;
+    int index=nums.length-1;
+    for(int i=0;i<nums.length-1;i++){
+      boolean flag=true;
+      for(int j=0;j<sortedBorder;j++){
+        if(nums[j]>nums[j+1]){
+          swap(nums,j,j+1);
+          flag=false;
+          index=j;
+        }
+      }
+      sortedBorder=index;
+      if(flag) break;
+    }
+  }
+
   private static void swap(int[] nums,int i, int j){
     int temp=nums[i];
     nums[i]=nums[j];
@@ -29,9 +50,9 @@ public class BubbleSort {
   }
 
   public static void main(String[] args) {
-//    int[] nums={3,0,4,1,2,5,9,8,7,6};
-    int[] nums={9,8,7,6,5,4,3,2,1,0};
-    new BubbleSort().sort(nums);
+    int[] nums={3,0,4,1,2,5,9,8,7,6};
+//    int[] nums={9,8,7,6,5,4,3,2,1,0};
+    new BubbleSort().sortion(nums);
     for(Integer i:nums){
       System.out.print(i);
     }

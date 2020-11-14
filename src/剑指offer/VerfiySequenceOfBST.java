@@ -1,7 +1,9 @@
 package 剑指offer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *  二叉搜索树的后续遍历序列
@@ -27,6 +29,7 @@ public class VerfiySequenceOfBST {
     public static void main(String[] args) {
         int[] nums={5,7,6,9,11,10,8};
         System.out.println(new VerfiySequenceOfBST().verifyPostorder(nums));
+
     }
 
 }
